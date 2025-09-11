@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c2efb28e80c15a46a5afc00c21b04f4, type: 3}
+  m_Name: Healers
+  m_EditorClassIdentifier: 
+  waveName: 
+  preDelay: 0
+  sequential: 1
+  steps:
+  - enemyPrefab: {fileID: 7201992067397151567, guid: 4e3f4a4d16439114bb6bf4f1f1ebb667,
+      type: 3}
+    actionName: SpawnHealer
+    duration: 1
+    count: 2
+    randomSpawnPoint: 0
+    specificSpawnPointIds: []
+    spawnAreaObject: {fileID: 194683391674444124, guid: 593ecaeec8ba7dd4b8e09998326514cc,
+      type: 3}

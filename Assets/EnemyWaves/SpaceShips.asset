@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c2efb28e80c15a46a5afc00c21b04f4, type: 3}
+  m_Name: SpaceShips
+  m_EditorClassIdentifier: 
+  waveName: 
+  preDelay: 0
+  sequential: 1
+  steps:
+  - enemyPrefab: {fileID: 4093063430272335831, guid: e5c628385678dac418dcc1021206edf4,
+      type: 3}
+    actionName: SpawnSpaceShip
+    duration: 0
+    count: 0
+    randomSpawnPoint: 0
+    specificSpawnPointIds: []
+    spawnAreaObject: {fileID: 0}

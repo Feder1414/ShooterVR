@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c2efb28e80c15a46a5afc00c21b04f4, type: 3}
+  m_Name: TankAndRam
+  m_EditorClassIdentifier: 
+  waveName: 
+  preDelay: 1
+  sequential: 1
+  steps:
+  - enemyPrefab: {fileID: 0}
+    actionName: Tank and ram
+    duration: 0
+    count: 1
+    randomSpawnPoint: 0
+    specificSpawnPointIds:
+    - T1
+    spawnAreaObject: {fileID: 6796159907246908089, guid: c3472f3fc68b2d447a251f47ca7e2ba3,
+      type: 3}
+  - enemyPrefab: {fileID: 5700227958651777850, guid: 3905e3cfafaf7944e843164096cf81eb,
+      type: 3}
+    actionName: TankSpawn
+    duration: 0.2
+    count: 2
+    randomSpawnPoint: 1
+    specificSpawnPointIds:
+    - T1
+    spawnAreaObject: {fileID: 774406735684517651, guid: 09db2dc2615eaf847834c90c8569e445,
+      type: 3}
+  - enemyPrefab: {fileID: 230522967583534294, guid: b308eb1cc3662b84bbde48a8e3a7e144,
+      type: 3}
+    actionName: KamiBirbSpawn
+    duration: 0.2
+    count: 2
+    randomSpawnPoint: 1
+    specificSpawnPointIds:
+    - T1
+    spawnAreaObject: {fileID: 158560315577146389, guid: 11c74d545110dc248bc4632a24811826,
+      type: 3}
+  - enemyPrefab: {fileID: 1094403476913546812, guid: 95a5bc4ef0418c94286b4bc7f260b43a,
+      type: 3}
+    actionName: BirbSpawn
+    duration: 0.2
+    count: 2
+    randomSpawnPoint: 1
+    specificSpawnPointIds:
+    - T1
+    spawnAreaObject: {fileID: 158560315577146389, guid: 11c74d545110dc248bc4632a24811826,
+      type: 3}
+  - enemyPrefab: {fileID: 230522967583534294, guid: b308eb1cc3662b84bbde48a8e3a7e144,
+      type: 3}
+    actionName: KamiBirbSpawn
+    duration: 0.2
+    count: 2
+    randomSpawnPoint: 1
+    specificSpawnPointIds:
+    - T1
+    spawnAreaObject: {fileID: 774406735684517651, guid: 09db2dc2615eaf847834c90c8569e445,
+      type: 3}

@@ -1,0 +1,56 @@
+# --- Unity ---
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Bb]uildApk/
+[Ll]ogs/
+[Mm]emoryCaptures/
+UserSettings/
+.sysinfo
+*.pidb
+*.suo
+*.user
+*.userprefs
+*.csproj
+*.unityproj
+*.sln
+*.sln.*
+*.tmp
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.pidb.meta
+*.suo.meta
+*.user.meta
+*.userprefs.meta
+*.csproj.meta
+*.unityproj.meta
+*.sln.meta
+*.sln.*.meta
+*.tmp.meta
+*.svd.meta
+*.pdb.meta
+*.mdb.meta
+*.opendb.meta
+*.VC.db.meta
+
+# --- Rider / VS / VSCode ---
+.vscode/
+.idea/
+*.DotSettings
+
+# --- Crash / Reports ---
+sysinfo.txt
+
+# --- Builds ---
+*.apk
+*.aab
+*.unitypackage
+
+# --- Others ---
+*.swp
+.DS_Store
