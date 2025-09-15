@@ -12,13 +12,18 @@ public class HUD : MonoBehaviour
     void Start()
     {
         var spawnManager = GameManager.instance.spawnManager;
-        spawnManager.onEnemyKilled += (aliveEnemies) =>
+        spawnManager.OnEnemyKilled += (aliveEnemies) =>
         {
             enemiesText.text = "Enemies: \n" + aliveEnemies;
         };
-        spawnManager.onWaveStarted += (waveNumber) =>
+        spawnManager.OnWaveStarted += (waveNumber) =>
         {
             waveText.text = "Wave: \n" + waveNumber;
+        };
+
+        spawnManager.OnEnemySpawned += (aliveEnemies) =>
+        {
+            enemiesText.text = "Enemies: \n" + aliveEnemies;
         };
     }
 

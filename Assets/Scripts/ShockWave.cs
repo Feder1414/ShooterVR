@@ -7,9 +7,12 @@ using UnityEngine.XR.Management;
 
 
 
+public interface IHasCooldown
+{
+    public event System.Action<float> OnCooldownStarted;
+}
 
-
-public class ShockWave : MonoBehaviour
+public class ShockWave : MonoBehaviour, IHasCooldown
 {
 
     public AudioSource audioSource;
@@ -64,6 +67,8 @@ public class ShockWave : MonoBehaviour
     struct HandState { public bool open; public float hold; public float lastTrueTime; }
     HandState left, right;
     float lastShockTime;
+
+    public event System.Action<float> OnCooldownStarted;
 
     void Awake()
     {
@@ -250,6 +255,8 @@ public class ShockWave : MonoBehaviour
         Vector3 center = originPalms + Camera.main.transform.forward * forwardOffset;
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
 
+        OnCooldownStarted?.Invoke(cooldown);
+
         if (audioSource != null && shockWaveSound != null)
         {
             audioSource.PlayOneShot(shockWaveSound);
@@ -266,6 +273,7 @@ public class ShockWave : MonoBehaviour
                 main.startSizeY = radius * 2f;
                 main.startSizeZ = radius * 2f;
             }
+            Instantiate(ringVfxPrefab, center, ringVfxPrefab.transform.rotation);
         }
     
         foreach (var hitCollider in hitColliders)

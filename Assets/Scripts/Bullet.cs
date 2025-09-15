@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class Bullet : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -20,8 +22,14 @@ public class Bullet : MonoBehaviour
     private Rigidbody rb;
     private float deathAt;
 
+    private AudioSource audioSource;
+
 
     [SerializeField] GameObject hitEffect;
+
+    [SerializeField] AudioClip hitSound;
+
+    [SerializeField] AudioClip shootSound;
 
 
 
@@ -33,6 +41,7 @@ public class Bullet : MonoBehaviour
         {
             Debug.LogError("Killable component not found");
         }
+        audioSource = gameObject.AddComponent<AudioSource>();
 
     }
     void OnEnable()
@@ -50,6 +59,7 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
+        PlayShootSound();
 
     }
 
@@ -75,7 +85,7 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject != origin) 
+        if (other.gameObject != origin)
         {
             Killable killable = other.gameObject.GetComponent<Killable>();
             if (killable != null)
@@ -90,7 +100,7 @@ public class Bullet : MonoBehaviour
             }
             //Destroy(gameObject);
 
-            }
+        }
 
 
 
@@ -105,8 +115,9 @@ public class Bullet : MonoBehaviour
     {
         if (hitEffect && !other.CompareTag("Player"))
         {
-            Instantiate(hitEffect, transform.position, Quaternion.identity);
-
+            var hitEffectInstance = Instantiate(hitEffect, transform.position, Quaternion.identity);
+            PlayHitSound();
+            Destroy(hitEffectInstance, 2f);
         }
         Destroy(gameObject);
     }
@@ -116,11 +127,27 @@ public class Bullet : MonoBehaviour
 
     }
 
+    void PlayHitSound()
+    {
+        if (audioSource != null && mKillable != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
+    }
+
     public void ChangedShotSpeed(Killable killable, float newShootSpeed)
     {
         rb.velocity = transform.forward * newShootSpeed;
     }
-    
+
+    void PlayShootSound()
+    {
+        if (audioSource != null && mKillable != null && shootSound != null)
+        {
+            audioSource.PlayOneShot(shootSound);
+        }
+    }
+
 
 
 }

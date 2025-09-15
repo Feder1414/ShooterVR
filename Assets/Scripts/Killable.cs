@@ -42,8 +42,9 @@ public class Killable : MonoBehaviour
         {
             Debug.LogError("Heal Effect Prefab is not assigned in " + gameObject.name);
         }
+        StartCoroutine(CheckHeight());
     }
-    
+
     void Start()
     {
 
@@ -95,7 +96,7 @@ public class Killable : MonoBehaviour
     {
         damage = Mathf.Min(Mathf.FloorToInt(damage * factor), 500); // Limitar el daño a un máximo de 100
     }
-    
+
 
 
     public float GetSpeed()
@@ -129,7 +130,7 @@ public class Killable : MonoBehaviour
         OnHealed?.Invoke(this, amount);
 
         Debug.Log(gameObject.name + " Healed: " + amount + " New Life: " + life);
-        
+
         Instantiate(healEffectPrefab, transform.position, Quaternion.identity);
 
     }
@@ -155,6 +156,21 @@ public class Killable : MonoBehaviour
     public int GetLife()
     {
         return life;
+    }
+    
+    IEnumerator CheckHeight()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(2f);
+            if (transform.position.y < -20f)
+            {
+                OnDied?.Invoke(this);
+                Destroy(gameObject);
+                yield break;
+            }
+            
+        }
     }
 
 }

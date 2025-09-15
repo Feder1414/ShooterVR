@@ -4,13 +4,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class RockAEO : MonoBehaviour
+public class RockAEO : MonoBehaviour, IHasCooldown
 {
     [SerializeField] float radius = 0.5f;
     [SerializeField] VisualEffect vfxPrefab;
     [SerializeField] string vfxRadiusProp = "Radius";
-    [SerializeField] string onPlayEvent = "OnPlay"; // coincide con el Initial Event Name
+    [SerializeField] string onPlayEvent = "OnPlay";
+    // coincide con el Initial Event Name
 
+    public event System.Action<float> OnCooldownStarted;
+    
     [SerializeField] Vector2 pitchRange = new Vector2(0.8f, 1.2f);
     [SerializeField] float volume = 0.8f;
 
@@ -70,6 +73,8 @@ public class RockAEO : MonoBehaviour
 
         lastTimeUsedPower = Time.time;
 
+        OnCooldownStarted?.Invoke(coolDown);
+
         if (vfxPrefab != null)
         {
             VisualEffect vfx = Instantiate(vfxPrefab, new Vector3(playerPosition.position.x, 0, playerPosition.position.z), Quaternion.identity);
@@ -91,19 +96,20 @@ public class RockAEO : MonoBehaviour
         {
             Debug.LogError("VFX Prefab is not assigned in " + gameObject.name);
         }
-        Collider[] col = Physics.OverlapSphere(transform.position, radius);
+        
 
 
 
         float t = 0f;
         while (t < lifeTime)
         {
+            Collider[] col = Physics.OverlapSphere(transform.position, radius);
             foreach (Collider c in col)
             {
                 if (c == null) continue;
                 if (c.TryGetComponent<Killable>(out Killable killableEnemy) && killableEnemy.GetTeam() == Killable.Team.Enemy)
                 {
-                    killableEnemy.TakeDamage(Mathf.RoundToInt(damageFactor * playerKillable.GetDamage()));
+                    killableEnemy.TakeDamage(Mathf.RoundToInt(damageFactor /  playerKillable.GetDamage()));
                 }
 
 

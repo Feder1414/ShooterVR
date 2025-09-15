@@ -35,11 +35,13 @@ public class SpawnManager : MonoBehaviour
 
     public bool canContinue = false;
 
-    public event Action<int> onEnemyKilled;
+    public event Action<int> OnEnemyKilled;
 
-    public event Action<int> onWaveStarted;
+    public event Action<int> OnWaveStarted;
 
-    public event Action<int> onWaveEnded;
+    public event Action<int> OnWaveEnded;
+
+    public event Action<int> OnEnemySpawned;
 
     public void Awake()
     {
@@ -69,9 +71,10 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator WaveLoopSpawn()
     {
-        onWaveStarted?.Invoke(currentWave);
+        
         while (true)
         {
+            OnWaveStarted?.Invoke(currentWave);
             for (int i = 0; i < currentWave + 1; i++)
             {
                 WaveAction waveAction = waveActionsPrefabs[UnityEngine.Random.Range(0, waveActionsPrefabs.Length)];
@@ -88,9 +91,11 @@ public class SpawnManager : MonoBehaviour
             
 
             currentWave++;
-            onWaveEnded?.Invoke(currentWave);
+            canContinue = false;
+            OnWaveEnded?.Invoke(currentWave);
+            Debug.Log("Wave " + currentWave + " ended. Waiting for player to continue...");
             yield return new WaitForSeconds(delayBetweenWaves);
-            
+         
             while (!canContinue)
             {
                 yield return null;
@@ -141,7 +146,9 @@ public class SpawnManager : MonoBehaviour
             {
                 Vector3 randomPosition = RandomPointInArea(step.spawnAreaObject);
                 var enemy = Instantiate(step.enemyPrefab, randomPosition, Quaternion.identity);
+
                 aliveEnemies++;
+                OnEnemySpawned?.Invoke((int)aliveEnemies);
                 var enemyKillable = enemy.GetComponent<Killable>();
                 if (enemyKillable != null)
                 {
@@ -172,6 +179,7 @@ public class SpawnManager : MonoBehaviour
 
                     var enemy = Instantiate(step.enemyPrefab, spawnPoint.position, spawnPoint.rotation);
                     aliveEnemies++;
+                    OnEnemySpawned?.Invoke((int)aliveEnemies);
                     var enemyKillable = enemy.GetComponent<Killable>();
                     if (enemyKillable != null)
                     {
@@ -207,8 +215,8 @@ public class SpawnManager : MonoBehaviour
         {
             enemy.OnDied -= OnEnemyDied;
         }
-        
-        onEnemyKilled?.Invoke((int) aliveEnemies);
+
+        OnEnemyKilled?.Invoke((int) aliveEnemies);
     }
 
     Vector3 RandomPointInArea(GameObject spawnAreaObject)

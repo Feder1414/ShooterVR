@@ -44,6 +44,7 @@ public class EnemyFollow : MonoBehaviour
             Debug.LogError("Animator component not found in children of " + gameObject.name);
         }
         rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         killable = GetComponent<Killable>();
 
     }

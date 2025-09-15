@@ -25,6 +25,10 @@ public class BuffManager : MonoBehaviour
 
     [SerializeField] float decreaseCooldownFireRain = 0.5f; // Minimum tick rate for Fire Rain
 
+    [SerializeField] float increaseFireRainLifetime = 0.3f; // Amount to increase lifetime of Fire Rain
+
+    public event System.Action OnbuffApplied;
+
 
     private Killable playerKillable;
     private RockAEO playerRockAOE;
@@ -57,12 +61,14 @@ public class BuffManager : MonoBehaviour
         }
     }
 
-    void IncreasePlayerHealth() {
+    public void IncreasePlayerHealth()
+    {
         if (playerKillable != null)
         {
             playerKillable.factorIncreaseLife(healthIncreaseFactor); // Heal 5 health points
         }
-        
+
+        OnbuffApplied?.Invoke();
 
     }
 
@@ -72,6 +78,7 @@ public class BuffManager : MonoBehaviour
         {
             playerKillable.IncreaseFireRate(fireRateIncreaseAmount);
         }
+        OnbuffApplied?.Invoke();
     }
 
     public void IncreasePlayerDamage()
@@ -80,6 +87,8 @@ public class BuffManager : MonoBehaviour
         {
             playerKillable.IncreaseFactorDamage(damageIncreaseFactor); // Increase damage by 10%
         }
+        OnbuffApplied?.Invoke();
+
     }
 
     public void IncraseKnockback()
@@ -88,6 +97,7 @@ public class BuffManager : MonoBehaviour
         {
             playerShockWave.forceMagnitude = Mathf.Min(playerShockWave.forceMagnitude + knockbackIncreaseAmount, 300f); // Increase knockback by 3%
         }
+        OnbuffApplied?.Invoke();
     }
 
     public void IncreaseShockwaveRadius()
@@ -96,6 +106,7 @@ public class BuffManager : MonoBehaviour
         {
             playerShockWave.radius = Mathf.Min(playerShockWave.radius + shockwaveRadiusIncreaseAmount, 10f); // Increase radius by 0.25
         }
+        OnbuffApplied?.Invoke();
     }
 
     public void DecreaseShockWaveCooldown()
@@ -104,6 +115,7 @@ public class BuffManager : MonoBehaviour
         {
             playerShockWave.cooldown = Mathf.Max(playerShockWave.cooldown - shockwaveCooldownDecreaseAmount, 0.1f); // Decrease cooldown by 0.05s
         }
+        OnbuffApplied?.Invoke();
     }
 
     public void DecreaseTickRateFireRain()
@@ -112,6 +124,7 @@ public class BuffManager : MonoBehaviour
         {
             playerRockAOE.tickRate = Mathf.Max(playerRockAOE.tickRate - tickRateFireRainDecreaseAmount, 0.1f); // Decrease tick rate by 0.1s
         }
+        OnbuffApplied?.Invoke();
     }
 
     public void IncreaseRadiusFireRain()
@@ -120,6 +133,7 @@ public class BuffManager : MonoBehaviour
         {
             playerRockAOE.IncreaseRadius(radiusFireRainIncreaseAmount);
         }
+        OnbuffApplied?.Invoke();
 
     }
 
@@ -129,15 +143,18 @@ public class BuffManager : MonoBehaviour
         {
             playerRockAOE.DecreaseCooldown(decreaseCooldownFireRain);
         }
+        OnbuffApplied?.Invoke();
     }
 
-    public void IncreaseLifeTimeFireRain(float amount)
+    public void IncreaseLifeTimeFireRain()
     {
         if (playerRockAOE != null)
         {
-            playerRockAOE.IncreaseLifeTime(amount);
+            playerRockAOE.IncreaseLifeTime(increaseFireRainLifetime);
         }
+        OnbuffApplied?.Invoke();
     }
+
 
 
 
