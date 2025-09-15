@@ -6,7 +6,8 @@ public class SniperEnemy : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [SerializeField] LineRenderer aimLine;
+    [SerializeField] LineRenderer aimLine; 
+    [SerializeField] Material aimLineMaterial;
     [SerializeField] float aimDuration;
     [SerializeField] Transform firePoint;
 
@@ -33,6 +34,15 @@ public class SniperEnemy : MonoBehaviour
         if (player == null)
         {
             Debug.LogError("Player not found");
+        }
+
+        if (aimLine == null)
+        {
+            Debug.LogError("Aim Line Renderer not assigned");
+        }
+        else
+        {
+            aimLine.material = aimLineMaterial;
         }
 
     }

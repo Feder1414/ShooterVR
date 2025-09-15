@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimLine: {fileID: 5802333080316707910}
+  aimLineMaterial: {fileID: 2100000, guid: dc68eb8c23bf5a74ca0cace40bb3e18b, type: 2}
   aimDuration: 3
   firePoint: {fileID: 4295446641145522394}
   bulletPrefab: {fileID: 6454231500936393677, guid: 01bcd806ef9fefc4aa3fa8bb0d5b5184,

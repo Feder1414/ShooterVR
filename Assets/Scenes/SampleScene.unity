@@ -5791,7 +5791,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475005495}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.48}
+  m_LocalPosition: {x: 0, y: 0, z: 0.294}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8121,17 +8121,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872336554}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.03062025}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.01, y: 0.009999999, z: 0.009999999}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1215840966}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1810338017}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.677, y: 0.816}
+  m_AnchoredPosition: {x: -0.677, y: -0.48399997}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1889666742
@@ -8763,6 +8763,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7990873191187716717, guid: 5eccbf4be2c00e94689ee8062e4e7276,
         type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1872336559}
+    - targetCorrespondingSourceObject: {fileID: 7990873191187716717, guid: 5eccbf4be2c00e94689ee8062e4e7276,
+        type: 3}
       insertIndex: -1
       addedObject: {fileID: 2125778015}
     - targetCorrespondingSourceObject: {fileID: 7990873191187716717, guid: 5eccbf4be2c00e94689ee8062e4e7276,
@@ -9378,12 +9382,12 @@ PrefabInstance:
     - target: {fileID: 312297192679413893, guid: 3905e3cfafaf7944e843164096cf81eb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3569999
+      value: 1.111
       objectReference: {fileID: 0}
     - target: {fileID: 312297192679413893, guid: 3905e3cfafaf7944e843164096cf81eb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.933
+      value: 2.29
       objectReference: {fileID: 0}
     - target: {fileID: 312297192679413893, guid: 3905e3cfafaf7944e843164096cf81eb,
         type: 3}
@@ -9424,6 +9428,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RootBirbTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 5700227958651777850, guid: 3905e3cfafaf7944e843164096cf81eb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8625925605688960461, guid: 3905e3cfafaf7944e843164096cf81eb,
+        type: 3}
+      propertyPath: life
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9655,7 +9669,7 @@ PrefabInstance:
     - target: {fileID: 993925700374043101, guid: 78ab9d91de5d2bb469d30a4ed34e5209,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2511099507145735938, guid: 78ab9d91de5d2bb469d30a4ed34e5209,
         type: 3}
@@ -9908,7 +9922,6 @@ SceneRoots:
   - {fileID: 1839846057}
   - {fileID: 1475005500}
   - {fileID: 1111572550}
-  - {fileID: 1872336559}
   - {fileID: 1329260276}
   - {fileID: 410087041}
   - {fileID: 832575519}
