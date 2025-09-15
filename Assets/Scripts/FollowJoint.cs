@@ -1,54 +1,56 @@
 using System.Collections;
-using System.Collections.Generic;
-using Oculus.Interaction.GrabAPI;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.XR.Hands;
 
 public class FollowJoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     public XRHandSkeletonDriver skeleton;
     [SerializeField] XRHandJointID jointId = XRHandJointID.Palm;
 
+    [Header("Local offsets (opcional)")]
+    public Vector3 localPositionOffset = new Vector3(0f, 0f, 0.07f); // 7 cm delante de la palma
+    public Vector3 localEulerOffset = Vector3.zero;                   // ajusta si quieres que mire al frente
 
+    Transform joint;
 
-    void Start()
+    void OnEnable() => StartCoroutine(AttachWhenReady());
+
+    IEnumerator AttachWhenReady()
     {
-        var palm = GetJointTransform();
+        // Espera hasta que el skeleton tenga referencias válidas
+        while ((joint = GetJointTransform()) == null)
+            yield return null;
 
-        gameObject.transform.SetParent(palm, worldPositionStays: false);
+        // Parent en espacio local y reset
+        transform.SetParent(joint, false);              // ahora "false" = trabajaremos en local
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+        transform.localScale = Vector3.one;
 
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        // Aplica offsets cómodos
+        transform.localPosition += localPositionOffset;
+        transform.localRotation *= Quaternion.Euler(localEulerOffset);
     }
 
     Transform GetJointTransform()
     {
-        if (skeleton == null)
-        {
-            Debug.Log("Skeleton not found error");
-            return null;
-
-        }
-
-        foreach (var joint in skeleton.jointTransformReferences)
-        {
-            if (joint.xrHandJointID == jointId)
-            {
-                return joint.jointTransform;
-            }
-        }
-
-        
-
+        if (skeleton == null) return null;
+        foreach (var j in skeleton.jointTransformReferences)
+            if (j.xrHandJointID == jointId)
+                return j.jointTransform;
         return null;
+    }
+
+    // Si el provider aplica la pose en LateUpdate, no hace falta nada más.
+    // Si vieras "jitter", podrías forzar aquí una corrección:
+    void LateUpdate()
+    {
+        if (joint == null) return;
+        // Si por alguna razón te quitan el parent, re-aplica offsets:
+        if (transform.parent != joint)
+        {
+            transform.position = joint.position;
+            transform.rotation = joint.rotation * Quaternion.Euler(localEulerOffset);
+        }
     }
 }

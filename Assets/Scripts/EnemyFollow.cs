@@ -26,7 +26,11 @@ public class EnemyFollow : MonoBehaviour
 
     public bool touchingPlayer = false;
 
+    public bool isKnocked = false;
+
     [SerializeField] private bool makeContactDamage = true;
+
+    private float knockEndTime;
 
 
     void Awake()
@@ -69,6 +73,17 @@ public class EnemyFollow : MonoBehaviour
 
     }
 
+
+    public void ApplyKnockback(Vector3 impulseDir, float impulse, float duration)
+    {
+
+        isKnocked = true;
+        knockEndTime = Time.time + duration; // Duración del knockback
+
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.AddForce(impulseDir * impulse, ForceMode.Impulse);
+    }
     private void FollowPlayer()
     {
 
@@ -79,9 +94,19 @@ public class EnemyFollow : MonoBehaviour
 
         //var st = animator.GetCurrentAnimatorStateInfo(0);
         //bool inWalk = st.IsName("Walk") && !animator.IsInTransition(0);
+        if (isKnocked)
+        {
+            if (Time.time >= knockEndTime)
+            {
+                isKnocked = false;
+            }
+            animator.SetBool("IsMoving", false);
+            return;
+        }
+
         bool shouldMove = !touchingPlayer && Vector3.Distance(transform.position, player.position) > stopDistance;
 
-        
+
         animator.SetBool("IsMoving", shouldMove);
 
         if (!shouldMove)
@@ -93,9 +118,10 @@ public class EnemyFollow : MonoBehaviour
 
 
         //rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
-        rb.position = rb.position + direction * killable.GetSpeed() * Time.fixedDeltaTime;
+        //rb.position = rb.position + direction * killable.GetSpeed() * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + direction * killable.GetSpeed() * Time.fixedDeltaTime);
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), killable.GetTurnSpeed() * Time.fixedDeltaTime);
-        
+
 
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mail;
@@ -32,6 +33,13 @@ public class SpawnManager : MonoBehaviour
 
     private Dictionary<string, Transform> spawnPointDictionary;
 
+    public bool canContinue = false;
+
+    public event Action<int> onEnemyKilled;
+
+    public event Action<int> onWaveStarted;
+
+    public event Action<int> onWaveEnded;
 
     public void Awake()
     {
@@ -61,15 +69,15 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator WaveLoopSpawn()
     {
-
+        onWaveStarted?.Invoke(currentWave);
         while (true)
         {
-            for (int i = 0; i < currentWave+1; i++)
+            for (int i = 0; i < currentWave + 1; i++)
             {
-                WaveAction waveAction = waveActionsPrefabs[Random.Range(0, waveActionsPrefabs.Length)];
+                WaveAction waveAction = waveActionsPrefabs[UnityEngine.Random.Range(0, waveActionsPrefabs.Length)];
                 Debug.Log("Starting Wave: " + waveAction.waveName);
                 yield return StartCoroutine(waveAction.Run(this));
-           
+
             }
 
 
@@ -77,10 +85,16 @@ public class SpawnManager : MonoBehaviour
             {
                 yield return null;
             }
+            
 
             currentWave++;
-
+            onWaveEnded?.Invoke(currentWave);
             yield return new WaitForSeconds(delayBetweenWaves);
+            
+            while (!canContinue)
+            {
+                yield return null;
+            }
         }
         // int currentEnemyCount = baseEnemyCount;
         // float currentDifficultLifeFactor = difficultLifeFactor;
@@ -109,8 +123,8 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+        Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
+        GameObject enemyPrefab = enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)];
         var enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
         enemy.GetComponent<Killable>().factorIncreaseLife(difficultLifeFactor);
         aliveEnemies++;
@@ -120,6 +134,7 @@ public class SpawnManager : MonoBehaviour
 
     public IEnumerator SpawnStep(WaveAction.WaveActionStep step)
     {
+    
         for (int i = 0; i < step.count; i++)
         {
             if (step.randomSpawnPoint)
@@ -155,7 +170,7 @@ public class SpawnManager : MonoBehaviour
                         continue;
                     }
 
-                    var enemy= Instantiate(step.enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+                    var enemy = Instantiate(step.enemyPrefab, spawnPoint.position, spawnPoint.rotation);
                     aliveEnemies++;
                     var enemyKillable = enemy.GetComponent<Killable>();
                     if (enemyKillable != null)
@@ -192,6 +207,8 @@ public class SpawnManager : MonoBehaviour
         {
             enemy.OnDied -= OnEnemyDied;
         }
+        
+        onEnemyKilled?.Invoke((int) aliveEnemies);
     }
 
     Vector3 RandomPointInArea(GameObject spawnAreaObject)
@@ -199,9 +216,9 @@ public class SpawnManager : MonoBehaviour
         Transform center = spawnAreaObject.GetComponent<SpawnAreaGizmo>().areaCenter;
         Vector3 size = spawnAreaObject.GetComponent<SpawnAreaGizmo>().areaSize;
         return center.position + new Vector3(
-            Random.Range(-size.x / 2, size.x / 2),
-            Random.Range(-size.y / 2, size.y / 2),
-            Random.Range(-size.z / 2, size.z / 2)
+            UnityEngine.Random.Range(-size.x / 2, size.x / 2),
+            UnityEngine.Random.Range(-size.y / 2, size.y / 2),
+            UnityEngine.Random.Range(-size.z / 2, size.z / 2)
         );
     }
     

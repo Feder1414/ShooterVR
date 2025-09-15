@@ -82,6 +82,7 @@ public class HealerEnemy : MonoBehaviour
             for (int i = 0; i < Mathf.Min(enemiesToHeal.Count, maxConcurrentHeals); i++)
             {
                 var enemy = enemiesToHeal[i];
+                if (enemy == null) continue;
                 var killableEnemy = enemy.GetComponent<Killable>();
                 if (killableEnemy != null)
                 { 

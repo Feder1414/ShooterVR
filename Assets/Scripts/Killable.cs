@@ -85,6 +85,19 @@ public class Killable : MonoBehaviour
         life = Mathf.FloorToInt(life * factor);
     }
 
+    public void IncreaseFireRate(float amount)
+    {
+        fireRate = Mathf.Max(0.2f, fireRate - amount); // Disminuir el tiempo entre disparos
+
+    }
+
+    public void IncreaseFactorDamage(float factor)
+    {
+        damage = Mathf.Min(Mathf.FloorToInt(damage * factor), 500); // Limitar el daño a un máximo de 100
+    }
+    
+
+
     public float GetSpeed()
     {
         return speed;

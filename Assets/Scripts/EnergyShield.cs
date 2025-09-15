@@ -103,10 +103,24 @@ public class EnergyShield : MonoBehaviour
             return;
         }
 
+        var killableBullet = bullet.GetComponent<Killable>();
+
+        if (!killableBullet)
+        {
+            Debug.LogWarning("Bullet has no Killable component");
+            return;
+        }
+
+        if (killableBullet.GetTeam() == Killable.Team.Player)
+            return;
 
 
         var bulletComponent = bullet.GetComponent<Bullet>();
+
         var shooterEnemy = bulletComponent.GetOrigin();
+        
+        killableBullet.SetTeam(Killable.Team.Player);
+
 
         var enemyDirection = (shooterEnemy.transform.position - transform.position).normalized;
         var rbBullet = bullet.GetComponent<Rigidbody>();
