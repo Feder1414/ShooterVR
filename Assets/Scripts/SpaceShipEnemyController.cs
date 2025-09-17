@@ -50,7 +50,7 @@ public class SpaceShipEnemyController : MonoBehaviour
 
         killable = GetComponent<Killable>();
 
-    
+
         if (killable == null)
         {
             Debug.LogError("Killable component not found!");
@@ -58,6 +58,8 @@ public class SpaceShipEnemyController : MonoBehaviour
 
         center = transform.position;
         baseRot = transform.rotation;
+
+        killable.OnDied += _ => OnDie();
 
 
         movementDuration = distanceToTravel / killable.GetSpeed();
@@ -132,6 +134,11 @@ public class SpaceShipEnemyController : MonoBehaviour
     void OnDisable()
     {
 
+    }
+
+    void OnDie()
+    { 
+        Destroy(gameObject);
     }
     
 

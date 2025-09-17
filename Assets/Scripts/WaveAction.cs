@@ -43,10 +43,13 @@ public class WaveAction : ScriptableObject
 
         foreach (WaveActionStep step in steps)
         {
+            Debug.Log("Executing step: " + step.actionName + " with " + step.count + " enemies."); 
             if (sequential)
             {
 
                 yield return spawnManager.SpawnStep(step);
+
+
 
             }
             else

@@ -16,7 +16,8 @@ MonoBehaviour:
   preDelay: 1
   sequential: 1
   steps:
-  - enemyPrefab: {fileID: 0}
+  - enemyPrefab: {fileID: 5700227958651777850, guid: 3905e3cfafaf7944e843164096cf81eb,
+      type: 3}
     actionName: Tank and ram
     duration: 0
     count: 1

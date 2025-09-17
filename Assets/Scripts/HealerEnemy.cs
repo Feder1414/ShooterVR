@@ -38,6 +38,7 @@ public class HealerEnemy : MonoBehaviour
         {
             Debug.LogError("Animator component not found in children of " + gameObject.name);
         }
+        killable.OnDied += _ => OnDie();
 
 
     }
@@ -67,6 +68,7 @@ public class HealerEnemy : MonoBehaviour
     {
         while (true)
         {
+            while (animator.GetBool("IsMoving")) { yield return null; }
 
             List<GameObject> enemiesToHeal = new List<GameObject>();
             if (!hasTargetsToHeal(enemiesToHeal))
@@ -75,6 +77,7 @@ public class HealerEnemy : MonoBehaviour
                 continue;
             }
             animator.SetBool("IsHealing", true);
+
             IsHealing = true;
 
             while (!animator.GetCurrentAnimatorStateInfo(healLayer).IsName(HealState)) yield return null;
@@ -85,17 +88,17 @@ public class HealerEnemy : MonoBehaviour
                 if (enemy == null) continue;
                 var killableEnemy = enemy.GetComponent<Killable>();
                 if (killableEnemy != null)
-                { 
-                        killableEnemy.Heal(healAmount);
+                {
+                    killableEnemy.Heal(healAmount);
                 }
-            
+
             }
 
             while (animator.GetCurrentAnimatorStateInfo(healLayer).normalizedTime < 1f) yield return null;
 
             animator.SetBool("IsHealing", false);
             IsHealing = false;
-            
+
             yield return new WaitForSeconds(healRate);
 
 
@@ -124,9 +127,15 @@ public class HealerEnemy : MonoBehaviour
             return killableA.GetLife().CompareTo(killableB.GetLife());
         });
 
-        
-        
+
+
         return true;
+    }
+    
+    void OnDie ()
+    {
+
+        Destroy(gameObject);
     }
 
 

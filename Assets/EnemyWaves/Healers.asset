@@ -21,7 +21,7 @@ MonoBehaviour:
     actionName: SpawnHealer
     duration: 1
     count: 2
-    randomSpawnPoint: 0
+    randomSpawnPoint: 1
     specificSpawnPointIds: []
     spawnAreaObject: {fileID: 194683391674444124, guid: 593ecaeec8ba7dd4b8e09998326514cc,
       type: 3}

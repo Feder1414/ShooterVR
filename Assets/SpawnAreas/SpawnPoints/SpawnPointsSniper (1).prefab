@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2851728816247472645}
   - component: {fileID: 7135118909584147731}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: sps1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 922126208692701041}
   - component: {fileID: 4627696080847874679}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: sps2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

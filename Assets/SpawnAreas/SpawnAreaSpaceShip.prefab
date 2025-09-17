@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1870581347953606337
+--- !u!1 &1987524513936421662
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4341479871953313898}
-  - component: {fileID: 5446804044287428654}
+  - component: {fileID: 3174490985141352654}
+  - component: {fileID: 7744500098897847548}
   m_Layer: 0
-  m_Name: SpawnAreaBirbFollow
+  m_Name: SpawnAreaSpaceShip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4341479871953313898
+--- !u!4 &3174490985141352654
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1870581347953606337}
+  m_GameObject: {fileID: 1987524513936421662}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.77, y: 0.9600001, z: 5.91}
+  m_LocalPosition: {x: 1.7798579, y: 2.192, z: 5.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5446804044287428654
+--- !u!114 &7744500098897847548
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1870581347953606337}
+  m_GameObject: {fileID: 1987524513936421662}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71d05b176d5173247825aa19e7ff74eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaCenter: {fileID: 4341479871953313898}
-  areaSize: {x: 8, y: 0.2, z: 4}
-  gizmosColor: {r: 0, g: 1, b: 0, a: 1}
+  areaCenter: {fileID: 3174490985141352654}
+  areaSize: {x: 10, y: 1.5, z: 5}
+  gizmosColor: {r: 0.5943396, g: 0.5704802, b: 0, a: 1}

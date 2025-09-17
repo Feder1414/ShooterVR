@@ -101,8 +101,12 @@ public class SniperEnemy : MonoBehaviour
 
                 Vector3 finalDir = q * wobble * Vector3.forward;
 
-                aimLine.SetPosition(0, firePoint.position);
-                aimLine.SetPosition(1, firePoint.position + finalDir * 100f);
+                transform.rotation = Quaternion.LookRotation(finalDir, Vector3.up);
+
+                // aimLine.SetPosition(0, firePoint.position);
+                // aimLine.SetPosition(1, firePoint.position + finalDir * 100f);
+                aimLine.SetPosition(0, Vector3.zero);
+                aimLine.SetPosition(1, Vector3.forward * 100f);
 
                 elapsedTime += Time.deltaTime;
                 yield return null;

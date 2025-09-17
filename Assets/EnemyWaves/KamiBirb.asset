@@ -21,6 +21,7 @@ MonoBehaviour:
     actionName: KamiBirb
     duration: 2
     count: 2
-    randomSpawnPoint: 0
+    randomSpawnPoint: 1
     specificSpawnPointIds: []
-    spawnAreaObject: {fileID: 0}
+    spawnAreaObject: {fileID: 158560315577146389, guid: 11c74d545110dc248bc4632a24811826,
+      type: 3}

@@ -20,7 +20,8 @@ MonoBehaviour:
       type: 3}
     actionName: SpawnSpaceShip
     duration: 0
-    count: 0
-    randomSpawnPoint: 0
+    count: 1
+    randomSpawnPoint: 1
     specificSpawnPointIds: []
-    spawnAreaObject: {fileID: 0}
+    spawnAreaObject: {fileID: 1987524513936421662, guid: a337fc6e72ec9594b951d1f7ca1c8842,
+      type: 3}

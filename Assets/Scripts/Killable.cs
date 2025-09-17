@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Killable : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class Killable : MonoBehaviour
 
     [SerializeField] Team team;
 
-    [SerializeField] int life = 10;
+    [SerializeField] int life;
+
+    [SerializeField] int baseLife = 10;
     [SerializeField] int damage = 3;
 
     [SerializeField] float fireRate;
@@ -38,6 +41,7 @@ public class Killable : MonoBehaviour
 
     void Awake()
     {
+        life = baseLife;
         if (healEffectPrefab == null)
         {
             Debug.LogError("Heal Effect Prefab is not assigned in " + gameObject.name);
@@ -61,6 +65,7 @@ public class Killable : MonoBehaviour
         life -= damage;
         Debug.Log("Damage taken: " + damage + " by " + gameObject.name);
         OnDamaged?.Invoke(this, damage);
+        OnLifeChanged?.Invoke(this);
 
         if (life <= 0)
         {
@@ -81,9 +86,10 @@ public class Killable : MonoBehaviour
     //     }
     // }
 
-    public void factorIncreaseLife(float factor)
+    public void FactorIncreaseLife(float factor)
     {
-        life = Mathf.FloorToInt(life * factor);
+        baseLife = Mathf.FloorToInt(baseLife * factor);
+        life = baseLife;
     }
 
     public void IncreaseFireRate(float amount)
@@ -94,8 +100,17 @@ public class Killable : MonoBehaviour
 
     public void IncreaseFactorDamage(float factor)
     {
-        damage = Mathf.Min(Mathf.FloorToInt(damage * factor), 500); // Limitar el daño a un máximo de 100
+        damage = Mathf.Min(Mathf.FloorToInt(damage * factor)); // Limitar el daño a un máximo de 100
     }
+
+    public void IncreaseSpeed(float factor)
+    {
+        speed = Mathf.Min(speed + factor, 5f); 
+    }
+
+    
+
+
 
 
 
@@ -126,8 +141,9 @@ public class Killable : MonoBehaviour
 
     public void Heal(int amount)
     {
-        life += amount;
+        life = Mathf.Max(life + amount, baseLife);
         OnHealed?.Invoke(this, amount);
+        OnLifeChanged?.Invoke(this);
 
         Debug.Log(gameObject.name + " Healed: " + amount + " New Life: " + life);
 
@@ -156,6 +172,11 @@ public class Killable : MonoBehaviour
     public int GetLife()
     {
         return life;
+    }
+
+    public int GetBaseLife()
+    {
+        return baseLife;
     }
     
     IEnumerator CheckHeight()

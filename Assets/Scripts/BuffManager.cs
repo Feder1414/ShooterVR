@@ -65,7 +65,7 @@ public class BuffManager : MonoBehaviour
     {
         if (playerKillable != null)
         {
-            playerKillable.factorIncreaseLife(healthIncreaseFactor); // Heal 5 health points
+            playerKillable.FactorIncreaseLife(healthIncreaseFactor); // Heal 5 health points
         }
 
         OnbuffApplied?.Invoke();

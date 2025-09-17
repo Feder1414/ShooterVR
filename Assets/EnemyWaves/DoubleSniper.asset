@@ -16,7 +16,8 @@ MonoBehaviour:
   preDelay: 1
   sequential: 1
   steps:
-  - enemyPrefab: {fileID: 0}
+  - enemyPrefab: {fileID: 993925700374043101, guid: 78ab9d91de5d2bb469d30a4ed34e5209,
+      type: 3}
     actionName: DoubleSniper
     duration: 0
     count: 2

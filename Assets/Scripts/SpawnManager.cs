@@ -22,8 +22,14 @@ public class SpawnManager : MonoBehaviour
     public float incrementFactorWave = 1.1f;
     public float rateGrowth = 1.0f;
 
-    public float difficultLifeFactor = 1.0f;
-    public float difficultDamageFactor = 1.0f;
+    public float difficultLifeFactor = 1.05f;
+    public float difficultDamageFactor = 1.03f;
+
+    public float speedIncreaseSum = 0.05f;
+
+    public float maxEnemyFireRate = 1f;
+
+    public float decreaseEnemyFireRate = 0.01f;
 
     public float aliveEnemies = 0;
 
@@ -43,6 +49,8 @@ public class SpawnManager : MonoBehaviour
 
     public event Action<int> OnEnemySpawned;
 
+    
+
     public void Awake()
     {
         spawnPointDictionary = new Dictionary<string, Transform>();
@@ -57,9 +65,18 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // if (spawnEnabled)
+        // {
+        //     StartCoroutine(WaveLoopSpawn());
+        // }
+    }
+
+    public void StartLoopSpawn()
+    {
         if (spawnEnabled)
         {
             StartCoroutine(WaveLoopSpawn());
+            Debug.Log("SpawnManager: Wave loop spawn started.");
         }
     }
 
@@ -93,6 +110,8 @@ public class SpawnManager : MonoBehaviour
             currentWave++;
             canContinue = false;
             OnWaveEnded?.Invoke(currentWave);
+            IncreaseFactorDifficult();
+
             Debug.Log("Wave " + currentWave + " ended. Waiting for player to continue...");
             yield return new WaitForSeconds(delayBetweenWaves);
          
@@ -131,7 +150,7 @@ public class SpawnManager : MonoBehaviour
         Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
         GameObject enemyPrefab = enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)];
         var enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-        enemy.GetComponent<Killable>().factorIncreaseLife(difficultLifeFactor);
+        enemy.GetComponent<Killable>().FactorIncreaseLife(difficultLifeFactor);
         aliveEnemies++;
 
         yield return new WaitForSeconds(baseSpawnRate);
@@ -152,7 +171,7 @@ public class SpawnManager : MonoBehaviour
                 var enemyKillable = enemy.GetComponent<Killable>();
                 if (enemyKillable != null)
                 {
-                    enemyKillable.factorIncreaseLife(difficultLifeFactor);
+                    SetDifficulFactorEnemy(enemyKillable);
                     enemyKillable.OnDied += OnEnemyDied;
                 }
                 else
@@ -183,7 +202,9 @@ public class SpawnManager : MonoBehaviour
                     var enemyKillable = enemy.GetComponent<Killable>();
                     if (enemyKillable != null)
                     {
-                        enemyKillable.factorIncreaseLife(difficultLifeFactor);
+                        SetDifficulFactorEnemy(enemyKillable);
+
+
                         enemyKillable.OnDied += OnEnemyDied;
                     }
                     else
@@ -205,6 +226,32 @@ public class SpawnManager : MonoBehaviour
 
 
 
+        }
+    }
+
+    void IncreaseFactorDifficult()
+    {
+        difficultLifeFactor *= difficultLifeFactor;
+        difficultDamageFactor *= difficultDamageFactor;
+        speedIncreaseSum += 0.05f;
+        decreaseEnemyFireRate += 0.01f;
+        
+
+
+    }
+
+    void SetDifficulFactorEnemy(Killable enemyKillable)
+    {
+        if (enemyKillable != null)
+        {
+            enemyKillable.FactorIncreaseLife((difficultLifeFactor));
+            enemyKillable.IncreaseFactorDamage(difficultDamageFactor);
+            enemyKillable.IncreaseSpeed(0.05f * currentWave);
+            var fireRate = enemyKillable.GetFireRate();
+            if (fireRate > maxEnemyFireRate)
+            {
+                enemyKillable.IncreaseFireRate(decreaseEnemyFireRate);
+            }
         }
     }
 

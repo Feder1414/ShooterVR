@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject buffCanvas;
 
+    [SerializeField] GameObject gameOverCanvas;
+
     void Awake()
     {
         if (instance == null)
@@ -25,6 +28,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
 
     void Start()
@@ -33,6 +37,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("Player reference is not assigned in GameManager.");
         }
+
+        player.GetComponent<Killable>().OnDied += OnPlayerDied;
 
         if (spawnManager == null)
         {
@@ -94,7 +100,7 @@ public class GameManager : MonoBehaviour
 
 
     }
-    
+
     void OnBuffApplied()
     {
         if (buffCanvas != null)
@@ -106,6 +112,65 @@ public class GameManager : MonoBehaviour
             Debug.LogError("BuffCanvas reference is not assigned in GameManager.");
         }
         spawnManager.canContinue = true;
+    }
+
+    public void StartLoopSpawn()
+    {
+        if (spawnManager != null)
+        {
+            spawnManager.StartLoopSpawn();
+            Debug.Log("Starting loop spawn from GameManager.");
+        }
+        else
+        {
+            Debug.LogError("SpawnManager reference is not assigned in GameManager.");
+        }
+    }
+
+    void OnPlayerDied(Killable killable)
+    {
+        Debug.Log("Player died. Stopping spawns and killing all enemies.");
+        if (spawnManager != null)
+        {
+            spawnManager.spawnEnabled = false;
+        }
+        else
+        {
+            Debug.LogError("SpawnManager reference is not assigned in GameManager.");
+        }
+
+        if (gameOverCanvas != null)
+        {
+            gameOverCanvas.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("GameOverCanvas reference is not assigned in GameManager.");
+        }
+
+        killAllEnemies();
+        spawnManager.canContinue = false;
+        
+        
+
+
+    }
+
+    void killAllEnemies()
+    {
+        Killable[] killables = FindObjectsOfType<Killable>();
+        foreach (Killable killable in killables)
+        {
+            if (killable.GetTeam() == Killable.Team.Enemy)
+            {
+                Destroy(killable.gameObject);
+            }
+        }
+    }
+    
+    public void RestartGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
     
 }
