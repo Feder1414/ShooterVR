@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2efb28e80c15a46a5afc00c21b04f4, type: 3}
   m_Name: SniperAndSpaceShip
   m_EditorClassIdentifier: 
-  waveName: 
+  waveName: Sniper and Space Ship
   preDelay: 1
   sequential: 1
   steps:
   - enemyPrefab: {fileID: 993925700374043101, guid: 78ab9d91de5d2bb469d30a4ed34e5209,
       type: 3}
-    actionName: 
+    actionName: Sniper
     duration: 1
-    count: 0
+    count: 1
     randomSpawnPoint: 0
     specificSpawnPointIds: []
     spawnAreaObject: {fileID: 993925700374043101, guid: 78ab9d91de5d2bb469d30a4ed34e5209,
@@ -29,34 +29,34 @@ MonoBehaviour:
       type: 3}
     actionName: 
     duration: 1
-    count: 0
+    count: 1
     randomSpawnPoint: 0
     specificSpawnPointIds: []
     spawnAreaObject: {fileID: 993925700374043101, guid: 78ab9d91de5d2bb469d30a4ed34e5209,
       type: 3}
   - enemyPrefab: {fileID: 4093063430272335831, guid: e5c628385678dac418dcc1021206edf4,
       type: 3}
-    actionName: 
-    duration: 1
-    count: 0
-    randomSpawnPoint: 0
-    specificSpawnPointIds: []
-    spawnAreaObject: {fileID: 993925700374043101, guid: 78ab9d91de5d2bb469d30a4ed34e5209,
-      type: 3}
-  - enemyPrefab: {fileID: 4093063430272335831, guid: e5c628385678dac418dcc1021206edf4,
-      type: 3}
-    actionName: 
+    actionName: Space ship
     duration: 2.5
-    count: 0
+    count: 1
     randomSpawnPoint: 0
     specificSpawnPointIds: []
     spawnAreaObject: {fileID: 993925700374043101, guid: 78ab9d91de5d2bb469d30a4ed34e5209,
       type: 3}
   - enemyPrefab: {fileID: 4093063430272335831, guid: e5c628385678dac418dcc1021206edf4,
       type: 3}
-    actionName: 
+    actionName: Spaec ship
     duration: 2.5
-    count: 0
+    count: 1
+    randomSpawnPoint: 0
+    specificSpawnPointIds: []
+    spawnAreaObject: {fileID: 993925700374043101, guid: 78ab9d91de5d2bb469d30a4ed34e5209,
+      type: 3}
+  - enemyPrefab: {fileID: 4093063430272335831, guid: e5c628385678dac418dcc1021206edf4,
+      type: 3}
+    actionName: Space ship
+    duration: 2.5
+    count: 1
     randomSpawnPoint: 0
     specificSpawnPointIds: []
     spawnAreaObject: {fileID: 993925700374043101, guid: 78ab9d91de5d2bb469d30a4ed34e5209,
