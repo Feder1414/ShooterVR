@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnAreaGizmo : MonoBehaviour
 {
-    public Transform areaCenter;
+    public Vector3 areaCenter;
     public Vector3 areaSize;
 
     public Color gizmosColor = Color.green;
@@ -14,6 +14,6 @@ public class SpawnAreaGizmo : MonoBehaviour
         if (areaCenter == null) return;
 
         Gizmos.color = gizmosColor;
-        Gizmos.DrawWireCube(areaCenter.position, areaSize);
+        Gizmos.DrawWireCube(areaCenter, areaSize);
     }
 }

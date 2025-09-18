@@ -113,13 +113,13 @@ public class PistolGestureDual : MonoBehaviour
         Vector3 palmPos = palm.position;
 
         bool indexExtended = IsExtended(hand, XRHandJointID.IndexTip, palmPos, extendedTipDistance);
-        bool thumbExtended = IsExtended(hand, XRHandJointID.ThumbTip, palmPos, extendedTipDistance);
+        //bool thumbExtended = IsExtended(hand, XRHandJointID.ThumbTip, palmPos, extendedTipDistance);
 
         bool middleCurled = IsCurled(hand, XRHandJointID.MiddleTip, palmPos, curledTipDistance);
         bool ringCurled = IsCurled(hand, XRHandJointID.RingTip, palmPos, curledTipDistance);
         bool pinkyCurled = IsCurled(hand, XRHandJointID.LittleTip, palmPos, curledTipDistance);
 
-        return indexExtended && thumbExtended && middleCurled && ringCurled && pinkyCurled;
+        return indexExtended && middleCurled && ringCurled && pinkyCurled;
     }
 
     bool IsExtended(XRHand hand, XRHandJointID tipId, Vector3 palmPos, float minDistance)

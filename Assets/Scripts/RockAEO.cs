@@ -169,7 +169,7 @@ public class RockAEO : MonoBehaviour, IHasCooldown
 
     public void IncreaseRadius(float amount)
     {
-        radius = Mathf.Max(radius + amount, 20f);
+        radius = Mathf.Min(radius + amount, 20f);
     }
 
     public void DecreaseCooldown(float amount)
@@ -179,7 +179,7 @@ public class RockAEO : MonoBehaviour, IHasCooldown
 
     public void IncreaseLifeTime(float amount)
     {
-        lifeTime = Mathf.Max(lifeTime + amount, 10f);
+        lifeTime = Mathf.Min(lifeTime + amount, 10f);
     }
 
 }

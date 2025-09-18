@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2efb28e80c15a46a5afc00c21b04f4, type: 3}
   m_Name: DoubleSniper
   m_EditorClassIdentifier: 
-  waveName: 
-  preDelay: 1
+  waveName: Double sniper
+  preDelay: 0.5
   sequential: 1
   steps:
   - enemyPrefab: {fileID: 993925700374043101, guid: 78ab9d91de5d2bb469d30a4ed34e5209,
       type: 3}
     actionName: DoubleSniper
-    duration: 0
+    duration: 0.5
     count: 2
     randomSpawnPoint: 1
     specificSpawnPointIds: []

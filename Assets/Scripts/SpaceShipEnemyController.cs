@@ -23,6 +23,8 @@ public class SpaceShipEnemyController : MonoBehaviour
 
     [SerializeField] float distanceToTravel = 5.0f;
 
+    [SerializeField] float maxX = 10.0f;
+
 
 
     float leftX, rightX;
@@ -117,10 +119,27 @@ public class SpaceShipEnemyController : MonoBehaviour
     IEnumerator Patrol()
     {
         while (true)
-        {
-            yield return Move(true);
-            yield return new WaitForSeconds(pauseAtEnds);
-            yield return Move(false);
+        {   
+            if (transform.position.x > maxX)
+            {
+                yield return Move(false);
+            }
+            else if (transform.position.x < -maxX)
+            {
+                yield return Move(true);
+            }
+            else
+            {
+                float probability = UnityEngine.Random.value;
+                if (probability < 0.5f)
+                {
+                    yield return Move(true);
+                }
+                else
+                {
+                    yield return Move(false);
+                }
+            }
             yield return new WaitForSeconds(pauseAtEnds);
         }
     }

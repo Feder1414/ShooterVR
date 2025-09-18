@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd0fecb226ca15499154f6550156456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopDistance: 2
+  stopDistance: 0.01
   touchingPlayer: 0
   isKnocked: 0
   makeContactDamage: 1
@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 1
+  life: 0
   baseLife: 5
   damage: 3
   fireRate: 1

@@ -55,21 +55,21 @@ public class PlayerController : MonoBehaviour
             target = hit.point;
         }
 
-        Vector3 shotDir = (target - handShootGameObject.transform.position).normalized;
-        Quaternion shotRotation = Quaternion.LookRotation(shotDir);
-        var bullet = Instantiate(bulletPrefab, handShootGameObject.transform.position, shotRotation);
-        var killableComponent = GetComponent<Killable>();
-        var bulletComponent = bullet.GetComponent<Bullet>();
+        // Vector3 shotDir = (target - handShootGameObject.transform.position).normalized;
+        // Quaternion shotRotation = Quaternion.LookRotation(shotDir);
+        // var bullet = Instantiate(bulletPrefab, handShootGameObject.transform.position, shotRotation);
+        // var killableComponent = GetComponent<Killable>();
+        // var bulletComponent = bullet.GetComponent<Bullet>();
 
 
-        bulletComponent.setOrigin(gameObject);
+        // bulletComponent.setOrigin(gameObject);
 
-        if (killableComponent)
-        {
-            bulletComponent.setDamage(killableComponent.GetDamage());
-        }
+        // if (killableComponent)
+        // {
+        //     bulletComponent.setDamage(killableComponent.GetDamage());
+        // }
 
-        killableComponent.SetTeam(mKillable.GetTeam());
+        // killableComponent.SetTeam(mKillable.GetTeam());
 
         // Instantiate and fire the bullet
 

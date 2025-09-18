@@ -7,32 +7,17 @@ using UnityEngine.XR.Hands;
 public class EnergyShield : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] float limitTime = 5f;
-    [SerializeField] float rechargeTime = 10f;
 
-    private float timer = 0f;
 
-    public bool isActive;
 
-    [SerializeField] Renderer rend;
-    MaterialPropertyBlock mbp;
-    [SerializeField] Color colorTarget = Color.red;
 
-    Color baseColorInitial = Color.white;
 
 
 
 
     void Awake()
     {
-        isActive = true;
-        mbp = new MaterialPropertyBlock();
 
-        var mat = rend.sharedMaterial != null ? rend.sharedMaterial : rend.material;
-        if (mat && mat.HasProperty("baseColorFactor"))
-            baseColorInitial = mat.GetColor("baseColorFactor");
-        else
-            Debug.LogWarning("EnergyShield: 'baseColorFactor' no existe en el shader.");
 
     }
 
@@ -49,39 +34,12 @@ public class EnergyShield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TimerForCooldown();
-        UpdateShieldColor();
 
 
     }
 
     void TimerForCooldown()
     {
-
-        if (timer < limitTime && isActive)
-        {
-            timer += Time.deltaTime;
-
-
-        }
-
-        if (timer >= limitTime && isActive)
-        {
-            isActive = false;
-            timer = 0f;
-
-        }
-
-        if (!isActive && timer < rechargeTime)
-        {
-            timer += Time.deltaTime;
-        }
-
-        if (timer >= rechargeTime && !isActive)
-        {
-            isActive = true;
-            timer = 0f;
-        }
 
     }
 
@@ -97,19 +55,8 @@ public class EnergyShield : MonoBehaviour
     }
     void BlockShoot(GameObject bullet)
     {
-        if (!isActive)
-        {
-            Debug.Log("Shield is down");
-            return;
-        }
-
+       
         var killableBullet = bullet.GetComponent<Killable>();
-
-        if (!killableBullet)
-        {
-            Debug.LogWarning("Bullet has no Killable component");
-            return;
-        }
 
         if (killableBullet.GetTeam() == Killable.Team.Player)
             return;
@@ -128,26 +75,6 @@ public class EnergyShield : MonoBehaviour
 
         Debug.Log("Bullet deflected");
 
-
-
-
-    }
-
-    void UpdateShieldColor()
-    {
-
-
-        if (!rend) return;
-
-
-        float t = isActive ? Mathf.Clamp01(timer / limitTime)
-                        : 1f - Mathf.Clamp01(timer / rechargeTime);
-
-        Color baseColor = mbp.GetColor("baseColorFactor");
-        Color lerpColor = Color.Lerp(baseColor, colorTarget, t);
-        rend.GetPropertyBlock(mbp);
-        mbp.SetColor("baseColorFactor", lerpColor);
-        rend.SetPropertyBlock(mbp);
     }
 
     

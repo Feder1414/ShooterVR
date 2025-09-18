@@ -12,25 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2efb28e80c15a46a5afc00c21b04f4, type: 3}
   m_Name: TankAndHealer
   m_EditorClassIdentifier: 
-  waveName: 
-  preDelay: 0
+  waveName: Tank and healer
+  preDelay: 0.5
   sequential: 1
   steps:
   - enemyPrefab: {fileID: 7201992067397151567, guid: 4e3f4a4d16439114bb6bf4f1f1ebb667,
       type: 3}
-    actionName: SpawnHealer
+    actionName: 'SpawnHealer '
     duration: 0.2
     count: 1
     randomSpawnPoint: 0
     specificSpawnPointIds:
     - H1
     spawnAreaObject: {fileID: 0}
-  - enemyPrefab: {fileID: 7201992067397151567, guid: 4e3f4a4d16439114bb6bf4f1f1ebb667,
+  - enemyPrefab: {fileID: 5700227958651777850, guid: 3905e3cfafaf7944e843164096cf81eb,
       type: 3}
-    actionName: SpawnHealer
+    actionName: Spawn tank
     duration: 0.2
     count: 1
     randomSpawnPoint: 0
     specificSpawnPointIds:
-    - H1
+    - T1
     spawnAreaObject: {fileID: 0}

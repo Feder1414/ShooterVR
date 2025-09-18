@@ -55,7 +55,7 @@ MonoBehaviour:
   fireRate: 1
   speed: 1
   turnSpeed: 1
-  shootSpeed: 100
+  shootSpeed: 15
   healEffectPrefab: {fileID: 339158821923109191, guid: 108ca465382c11742bd2c91fe4fdb13f,
     type: 3}
 --- !u!114 &6904539861044773628
@@ -74,7 +74,7 @@ MonoBehaviour:
   aimLineMaterial: {fileID: 2100000, guid: dc68eb8c23bf5a74ca0cace40bb3e18b, type: 2}
   aimDuration: 3
   firePoint: {fileID: 4295446641145522394}
-  bulletPrefab: {fileID: 6454231500936393677, guid: 01bcd806ef9fefc4aa3fa8bb0d5b5184,
+  bulletPrefab: {fileID: 2753783846583039788, guid: 0848ef225434c984ea178a58c7c47cce,
     type: 3}
   lockCurve:
     serializedVersion: 2
@@ -121,10 +121,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2225542
-  m_Height: 0.7811327
+  m_Radius: 0.36086643
+  m_Height: 0.8595772
   m_Direction: 2
-  m_Center: {x: -0.020213604, y: -0.050000012, z: -0.98907804}
+  m_Center: {x: 0.038839936, y: 0.029258639, z: 0.0931654}
 --- !u!1 &6769311949205069548
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 6769311949205069548}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.00006, y: -0.1432, z: 0.05324}
+  m_LocalPosition: {x: -0.0852, y: -3.3096, z: -0.6576}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -183,7 +183,7 @@ Transform:
   m_GameObject: {fileID: 7733394824930652582}
   serializedVersion: 2
   m_LocalRotation: {x: -0.030950002, y: 0.054962054, z: 0.020147454, w: -0.9978053}
-  m_LocalPosition: {x: -0.010610317, y: 0.059197366, z: 0.4040125}
+  m_LocalPosition: {x: 0.083, y: 0.71, z: -3.153}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -241,8 +241,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.019354839
-        value: 0.014814675
+        time: 0.09578684
+        value: 0.044011414
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -290,7 +290,7 @@ LineRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
 --- !u!1001 &2408018919101256877
@@ -423,7 +423,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a986c035d51d4834aa24f4b28ae2cd90,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.932
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a986c035d51d4834aa24f4b28ae2cd90,
         type: 3}
@@ -756,7 +756,7 @@ PrefabInstance:
     - target: {fileID: 108550021368362830, guid: a5a6f4b02fd3c8a4ea3ae757e512eb73,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.957
+      value: -0.003
       objectReference: {fileID: 0}
     - target: {fileID: 108550021368362830, guid: a5a6f4b02fd3c8a4ea3ae757e512eb73,
         type: 3}

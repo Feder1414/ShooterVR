@@ -9,9 +9,13 @@ public class HUD : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] TMP_Text enemiesText;
     [SerializeField] TMP_Text waveText;
+    [SerializeField] GameManager gameManager;
+    
+
+
     void Start()
     {
-        var spawnManager = GameManager.instance.spawnManager;
+        var spawnManager = gameManager.spawnManager;
         spawnManager.OnEnemyKilled += (aliveEnemies) =>
         {
             enemiesText.text = "Enemies: \n" + aliveEnemies;

@@ -12,14 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2efb28e80c15a46a5afc00c21b04f4, type: 3}
   m_Name: SpaceShips
   m_EditorClassIdentifier: 
-  waveName: 
-  preDelay: 0
+  waveName: Space ships
+  preDelay: 0.5
   sequential: 1
   steps:
   - enemyPrefab: {fileID: 4093063430272335831, guid: e5c628385678dac418dcc1021206edf4,
       type: 3}
     actionName: SpawnSpaceShip
-    duration: 0
+    duration: 1.5
+    count: 1
+    randomSpawnPoint: 1
+    specificSpawnPointIds: []
+    spawnAreaObject: {fileID: 1987524513936421662, guid: a337fc6e72ec9594b951d1f7ca1c8842,
+      type: 3}
+  - enemyPrefab: {fileID: 4093063430272335831, guid: e5c628385678dac418dcc1021206edf4,
+      type: 3}
+    actionName: SpawnSpaceShip
+    duration: 1.5
     count: 1
     randomSpawnPoint: 1
     specificSpawnPointIds: []

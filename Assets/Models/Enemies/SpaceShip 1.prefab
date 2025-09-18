@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2a8069aa5ea734baa7cbea92114e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseAtEnds: 0.25
+  pauseAtEnds: 1.5
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -93,7 +93,7 @@ MonoBehaviour:
   maxPitchDeg: 10
   tiltSensitivity: 2
   tiltSmooth: 8
-  distanceToTravel: 5
+  distanceToTravel: 1
 --- !u!114 &5168933554376791812
 MonoBehaviour:
   m_ObjectHideFlags: 0

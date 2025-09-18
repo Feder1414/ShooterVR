@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1987524513936421662}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 1.7798579, y: 2.192, z: 5.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &7744500098897847548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d05b176d5173247825aa19e7ff74eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaCenter: {fileID: 3174490985141352654}
-  areaSize: {x: 10, y: 1.5, z: 5}
+  areaCenter: {x: 2.1, y: 2.15, z: 5.66}
+  areaSize: {x: 5, y: 1.5, z: 5}
   gizmosColor: {r: 0.5943396, g: 0.5704802, b: 0, a: 1}

@@ -28,7 +28,7 @@ public class EnemyFollow : MonoBehaviour
 
     public bool isKnocked = false;
 
-    [SerializeField] private bool makeContactDamage = true;
+    [SerializeField] bool makeContactDamage = true;
 
     private float knockEndTime;
 
@@ -129,7 +129,7 @@ public class EnemyFollow : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             Debug.Log("Collided with Player");
             var killableComponent = collision.gameObject.GetComponent<Killable>();

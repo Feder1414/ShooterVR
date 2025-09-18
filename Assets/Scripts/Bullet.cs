@@ -85,22 +85,21 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject != origin)
+       
+        Killable killable = other.gameObject.GetComponent<Killable>();
+        if (killable != null)
         {
-            Killable killable = other.gameObject.GetComponent<Killable>();
-            if (killable != null)
+            if (killable.GetTeam() != mKillable.GetTeam())
             {
-                if (killable.GetTeam() != mKillable.GetTeam())
-                {
-                    killable.TakeDamage(mKillable.GetDamage());
-                    //Destroy(gameObject);
+                killable.TakeDamage(mKillable.GetDamage());
+                //Destroy(gameObject);
 
-                    HandleDestroy(other.gameObject);
-                }
+                HandleDestroy(other.gameObject);
             }
+        }
             //Destroy(gameObject);
 
-        }
+        
 
 
 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class HealthBar : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private Killable target;
+    [SerializeField] Killable target;
     [SerializeField] Image fill;
 
     [SerializeField] Transform billboard;
@@ -61,6 +61,7 @@ public class HealthBar : MonoBehaviour
         if (!target || !fill) return;
         float t = Mathf.Clamp01((float)target.GetLife() / Mathf.Max(1, target.GetBaseLife()));
         fill.fillAmount = t;
+        Debug.Log("HealthBar updated: " + t + " for " + gameObject.name);
         // opcional: color por estado
         // fill.color = Color.Lerp(Color.red, Color.green, t);
     }

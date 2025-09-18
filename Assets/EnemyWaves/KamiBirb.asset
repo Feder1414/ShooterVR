@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2efb28e80c15a46a5afc00c21b04f4, type: 3}
   m_Name: KamiBirb
   m_EditorClassIdentifier: 
-  waveName: 
-  preDelay: 1
+  waveName: KamiBirbs double
+  preDelay: 0.5
   sequential: 1
   steps:
   - enemyPrefab: {fileID: 230522967583534294, guid: b308eb1cc3662b84bbde48a8e3a7e144,
       type: 3}
     actionName: KamiBirb
-    duration: 2
+    duration: 1
     count: 2
     randomSpawnPoint: 1
     specificSpawnPointIds: []

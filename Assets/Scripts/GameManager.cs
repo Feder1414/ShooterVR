@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
 
     public SpawnManager spawnManager;
-    public static GameManager instance;
+    public  GameManager instance;
 
     public BuffManager buffManager;
 
@@ -19,17 +19,10 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+      
         
     }
+
 
     void Start()
     {
@@ -96,6 +89,9 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("BuffCanvas reference is not assigned in GameManager.");
         }
+        var playerKillable = player.GetComponent<Killable>();
+        playerKillable.Heal(playerKillable.GetBaseLife()); // Heal to full life at the end of the wave
+        
 
 
 
@@ -149,10 +145,7 @@ public class GameManager : MonoBehaviour
         }
 
         killAllEnemies();
-        spawnManager.canContinue = false;
-        
-        
-
+        spawnManager.StopSpawning();
 
     }
 

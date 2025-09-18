@@ -49,7 +49,7 @@ public class SpawnManager : MonoBehaviour
 
     public event Action<int> OnEnemySpawned;
 
-    
+
 
     public void Awake()
     {
@@ -88,7 +88,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator WaveLoopSpawn()
     {
-        
+
         while (true)
         {
             OnWaveStarted?.Invoke(currentWave);
@@ -105,7 +105,7 @@ public class SpawnManager : MonoBehaviour
             {
                 yield return null;
             }
-            
+
 
             currentWave++;
             canContinue = false;
@@ -114,7 +114,7 @@ public class SpawnManager : MonoBehaviour
 
             Debug.Log("Wave " + currentWave + " ended. Waiting for player to continue...");
             yield return new WaitForSeconds(delayBetweenWaves);
-         
+
             while (!canContinue)
             {
                 yield return null;
@@ -158,13 +158,13 @@ public class SpawnManager : MonoBehaviour
 
     public IEnumerator SpawnStep(WaveAction.WaveActionStep step)
     {
-    
+
         for (int i = 0; i < step.count; i++)
         {
             if (step.randomSpawnPoint)
             {
                 Vector3 randomPosition = RandomPointInArea(step.spawnAreaObject);
-                var enemy = Instantiate(step.enemyPrefab, randomPosition, Quaternion.identity);
+                var enemy = Instantiate(step.enemyPrefab, randomPosition, step.spawnAreaObject.transform.rotation);
 
                 aliveEnemies++;
                 OnEnemySpawned?.Invoke((int)aliveEnemies);
@@ -235,7 +235,7 @@ public class SpawnManager : MonoBehaviour
         difficultDamageFactor *= difficultDamageFactor;
         speedIncreaseSum += 0.05f;
         decreaseEnemyFireRate += 0.01f;
-        
+
 
 
     }
@@ -244,7 +244,7 @@ public class SpawnManager : MonoBehaviour
     {
         if (enemyKillable != null)
         {
-            enemyKillable.FactorIncreaseLife((difficultLifeFactor));
+            enemyKillable.FactorIncreaseLife(difficultLifeFactor);
             enemyKillable.IncreaseFactorDamage(difficultDamageFactor);
             enemyKillable.IncreaseSpeed(0.05f * currentWave);
             var fireRate = enemyKillable.GetFireRate();
@@ -263,18 +263,24 @@ public class SpawnManager : MonoBehaviour
             enemy.OnDied -= OnEnemyDied;
         }
 
-        OnEnemyKilled?.Invoke((int) aliveEnemies);
+        OnEnemyKilled?.Invoke((int)aliveEnemies);
     }
 
     Vector3 RandomPointInArea(GameObject spawnAreaObject)
     {
-        Transform center = spawnAreaObject.GetComponent<SpawnAreaGizmo>().areaCenter;
+        Vector3 center = spawnAreaObject.GetComponent<SpawnAreaGizmo>().areaCenter;
         Vector3 size = spawnAreaObject.GetComponent<SpawnAreaGizmo>().areaSize;
-        return center.position + new Vector3(
+        return center + new Vector3(
             UnityEngine.Random.Range(-size.x / 2, size.x / 2),
             UnityEngine.Random.Range(-size.y / 2, size.y / 2),
             UnityEngine.Random.Range(-size.z / 2, size.z / 2)
         );
+    }
+    
+    public void StopSpawning()
+    {
+        StopAllCoroutines();
+        spawnEnabled = false;
     }
     
 

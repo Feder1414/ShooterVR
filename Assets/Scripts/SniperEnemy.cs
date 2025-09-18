@@ -6,7 +6,7 @@ public class SniperEnemy : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [SerializeField] LineRenderer aimLine; 
+    [SerializeField] LineRenderer aimLine;
     [SerializeField] Material aimLineMaterial;
     [SerializeField] float aimDuration;
     [SerializeField] Transform firePoint;
@@ -16,7 +16,7 @@ public class SniperEnemy : MonoBehaviour
     private GameObject player;
 
     private Killable killable;
-    [SerializeField] AnimationCurve lockCurve = AnimationCurve.EaseInOut(0,0,1,1);
+    [SerializeField] AnimationCurve lockCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
     [SerializeField] float swayFreq;
     [SerializeField] float maxSwayAngle;
 
@@ -28,6 +28,7 @@ public class SniperEnemy : MonoBehaviour
         {
             Debug.LogError("Killable component not found");
         }
+        killable.OnDied += _ => OnDie();
 
         player = GameObject.FindGameObjectWithTag("MainCamera");
 
@@ -48,8 +49,8 @@ public class SniperEnemy : MonoBehaviour
     }
     void Start()
     {
-        
-    
+
+
     }
 
     void OnEnable()
@@ -101,19 +102,20 @@ public class SniperEnemy : MonoBehaviour
 
                 Vector3 finalDir = q * wobble * Vector3.forward;
 
-                transform.rotation = Quaternion.LookRotation(finalDir, Vector3.up);
 
-                // aimLine.SetPosition(0, firePoint.position);
-                // aimLine.SetPosition(1, firePoint.position + finalDir * 100f);
+
                 aimLine.SetPosition(0, Vector3.zero);
                 aimLine.SetPosition(1, Vector3.forward * 100f);
+
+                //firePoint.rotation = Quaternion.LookRotation(finalDir, Vector3.up);
+                transform.rotation = Quaternion.LookRotation(finalDir, Vector3.up);
 
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
 
             aimLine.enabled = false;
-            Vector3 shotDir = (player.transform.position - transform.position).normalized;
+            Vector3 shotDir = (player.transform.position - firePoint.position).normalized;
 
             // Fire the bullet
             var bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.LookRotation(shotDir));
@@ -126,6 +128,12 @@ public class SniperEnemy : MonoBehaviour
             yield return new WaitForSeconds(killable.GetFireRate());
         }
 
+    }
+    
+    void OnDie()
+    {
+        Destroy(gameObject);
+     
     }
 
 }

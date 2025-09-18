@@ -88,7 +88,7 @@ public class Killable : MonoBehaviour
 
     public void FactorIncreaseLife(float factor)
     {
-        baseLife = Mathf.FloorToInt(baseLife * factor);
+        baseLife = Mathf.CeilToInt(baseLife * factor);
         life = baseLife;
     }
 
@@ -100,7 +100,7 @@ public class Killable : MonoBehaviour
 
     public void IncreaseFactorDamage(float factor)
     {
-        damage = Mathf.Min(Mathf.FloorToInt(damage * factor)); // Limitar el daño a un máximo de 100
+        damage = Mathf.Min(Mathf.CeilToInt(damage * factor)); // Limitar el daño a un máximo de 100
     }
 
     public void IncreaseSpeed(float factor)
@@ -141,7 +141,7 @@ public class Killable : MonoBehaviour
 
     public void Heal(int amount)
     {
-        life = Mathf.Max(life + amount, baseLife);
+        life = Mathf.Min(life + amount, baseLife);
         OnHealed?.Invoke(this, amount);
         OnLifeChanged?.Invoke(this);
 
@@ -157,6 +157,12 @@ public class Killable : MonoBehaviour
         shootSpeed = newShootSpeed;
         OnShootSpeedChanged?.Invoke(this, shootSpeed);
         return shootSpeed;
+    }
+
+    public void IncreaseShootSpeed(float amount)
+    {
+        shootSpeed = Mathf.Min(shootSpeed + amount, 20f); // Limitar la velocidad de disparo a un máximo de 20
+        OnShootSpeedChanged?.Invoke(this, shootSpeed);
     }
 
     public Team GetTeam()

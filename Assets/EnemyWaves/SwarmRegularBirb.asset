@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2efb28e80c15a46a5afc00c21b04f4, type: 3}
   m_Name: SwarmRegularBirb
   m_EditorClassIdentifier: 
-  waveName: 
+  waveName: Swarm and regular birb
   preDelay: 1
   sequential: 1
   steps:

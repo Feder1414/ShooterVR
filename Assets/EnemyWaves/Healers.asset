@@ -12,15 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2efb28e80c15a46a5afc00c21b04f4, type: 3}
   m_Name: Healers
   m_EditorClassIdentifier: 
-  waveName: 
-  preDelay: 0
+  waveName: Double Healer
+  preDelay: 0.5
   sequential: 1
   steps:
   - enemyPrefab: {fileID: 7201992067397151567, guid: 4e3f4a4d16439114bb6bf4f1f1ebb667,
       type: 3}
     actionName: SpawnHealer
     duration: 1
-    count: 2
+    count: 1
+    randomSpawnPoint: 1
+    specificSpawnPointIds: []
+    spawnAreaObject: {fileID: 194683391674444124, guid: 593ecaeec8ba7dd4b8e09998326514cc,
+      type: 3}
+  - enemyPrefab: {fileID: 7201992067397151567, guid: 4e3f4a4d16439114bb6bf4f1f1ebb667,
+      type: 3}
+    actionName: SpawnHealer
+    duration: 1
+    count: 1
     randomSpawnPoint: 1
     specificSpawnPointIds: []
     spawnAreaObject: {fileID: 194683391674444124, guid: 593ecaeec8ba7dd4b8e09998326514cc,
