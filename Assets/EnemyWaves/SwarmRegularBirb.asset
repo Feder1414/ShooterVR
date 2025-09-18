@@ -19,7 +19,7 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 1094403476913546812, guid: 95a5bc4ef0418c94286b4bc7f260b43a,
       type: 3}
     actionName: SwarmRegularBirb
-    duration: 1.5
+    duration: 0.5
     count: 5
     randomSpawnPoint: 1
     specificSpawnPointIds: []

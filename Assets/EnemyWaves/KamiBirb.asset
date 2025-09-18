@@ -13,14 +13,23 @@ MonoBehaviour:
   m_Name: KamiBirb
   m_EditorClassIdentifier: 
   waveName: KamiBirbs double
-  preDelay: 0.5
+  preDelay: 2
   sequential: 1
   steps:
   - enemyPrefab: {fileID: 230522967583534294, guid: b308eb1cc3662b84bbde48a8e3a7e144,
       type: 3}
     actionName: KamiBirb
-    duration: 1
-    count: 2
+    duration: 3
+    count: 3
+    randomSpawnPoint: 1
+    specificSpawnPointIds: []
+    spawnAreaObject: {fileID: 158560315577146389, guid: 11c74d545110dc248bc4632a24811826,
+      type: 3}
+  - enemyPrefab: {fileID: 230522967583534294, guid: b308eb1cc3662b84bbde48a8e3a7e144,
+      type: 3}
+    actionName: KamiBirb
+    duration: 3
+    count: 3
     randomSpawnPoint: 1
     specificSpawnPointIds: []
     spawnAreaObject: {fileID: 158560315577146389, guid: 11c74d545110dc248bc4632a24811826,

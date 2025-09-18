@@ -41,9 +41,10 @@ public class WaveAction : ScriptableObject
     {
         yield return new WaitForSeconds(preDelay);
 
+        Debug.Log("Starting Wave Action: " + waveName);
         foreach (WaveActionStep step in steps)
         {
-            Debug.Log("Executing step: " + step.actionName + " with " + step.count + " enemies."); 
+            Debug.Log("Executing step: " + step.actionName + " with " + step.count + " enemies.");
             if (sequential)
             {
 

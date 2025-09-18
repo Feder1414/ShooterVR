@@ -112,7 +112,11 @@ public class Killable : MonoBehaviour
 
 
 
-
+    public float setDamage(int newDamage)
+    {
+        damage = newDamage;
+        return damage;
+    }
 
     public float GetSpeed()
     {

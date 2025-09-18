@@ -11,13 +11,20 @@ public class EnergyShield : MonoBehaviour
 
 
 
-
+    [SerializeField] GameObject player;
 
 
 
     void Awake()
     {
-
+        if (!player)
+        {
+            player = FindObjectOfType<PlayerController>().gameObject;
+            if (!player)
+            {
+                Debug.LogError("Player not found in the scene for EnergyShield.");
+            }
+        }
 
     }
 
@@ -71,6 +78,11 @@ public class EnergyShield : MonoBehaviour
 
         var enemyDirection = (shooterEnemy.transform.position - transform.position).normalized;
         var rbBullet = bullet.GetComponent<Rigidbody>();
+        
+        var playerKillable = player.GetComponent<Killable>();
+
+        killableBullet.setDamage(playerKillable.GetDamage()*3);
+        
         rbBullet.velocity = enemyDirection * rbBullet.velocity.magnitude;
 
         Debug.Log("Bullet deflected");

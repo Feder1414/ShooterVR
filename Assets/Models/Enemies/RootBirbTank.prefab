@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 1
   life: 0
-  baseLife: 15
+  baseLife: 12
   damage: 3
   fireRate: 0
   speed: 1

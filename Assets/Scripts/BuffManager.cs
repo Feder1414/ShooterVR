@@ -172,7 +172,7 @@ public class BuffManager : MonoBehaviour
         if (playerShockWave != null)
         {
             //playerShockWave.cooldown = Mathf.Max(playerShockWave.cooldown - shockwaveCooldownDecreaseAmount, 0.1f); // Decrease cooldown by 0.05s
-            buffToApply.Add(() => playerShockWave.cooldown = Mathf.Max(playerShockWave.cooldown - shockwaveCooldownDecreaseAmount, 0.1f));
+            buffToApply.Add(() => playerShockWave.cooldown = Mathf.Max(playerShockWave.cooldown - shockwaveCooldownDecreaseAmount, 1.0f));
         }
         //OnbuffApplied?.Invoke();
     }
@@ -230,7 +230,7 @@ public class BuffManager : MonoBehaviour
 
     public void OnWaveEnded(int currentWave)
     {
-        if (currentWave % 5 == 0)
+        if (currentWave % 4 == 0)
         {
             buffPerRound = Mathf.Min(buffPerRound + 1, 5); // Max 5 buffs per round
         }

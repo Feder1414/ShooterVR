@@ -19,8 +19,26 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 5700227958651777850, guid: 3905e3cfafaf7944e843164096cf81eb,
       type: 3}
     actionName: Triple tank
-    duration: 3
-    count: 3
+    duration: 2.5
+    count: 1
+    randomSpawnPoint: 1
+    specificSpawnPointIds: []
+    spawnAreaObject: {fileID: 6684565714589589349, guid: bb812f683b17ac846b02195a10dc065a,
+      type: 3}
+  - enemyPrefab: {fileID: 5700227958651777850, guid: 3905e3cfafaf7944e843164096cf81eb,
+      type: 3}
+    actionName: Triple tank
+    duration: 2.5
+    count: 1
+    randomSpawnPoint: 1
+    specificSpawnPointIds: []
+    spawnAreaObject: {fileID: 6684565714589589349, guid: bb812f683b17ac846b02195a10dc065a,
+      type: 3}
+  - enemyPrefab: {fileID: 5700227958651777850, guid: 3905e3cfafaf7944e843164096cf81eb,
+      type: 3}
+    actionName: Triple tank
+    duration: 2.5
+    count: 1
     randomSpawnPoint: 1
     specificSpawnPointIds: []
     spawnAreaObject: {fileID: 6684565714589589349, guid: bb812f683b17ac846b02195a10dc065a,

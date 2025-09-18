@@ -29,8 +29,8 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 5700227958651777850, guid: 3905e3cfafaf7944e843164096cf81eb,
       type: 3}
     actionName: TankSpawn
-    duration: 0.2
-    count: 3
+    duration: 5
+    count: 2
     randomSpawnPoint: 1
     specificSpawnPointIds: []
     spawnAreaObject: {fileID: 6684565714589589349, guid: bb812f683b17ac846b02195a10dc065a,
@@ -53,7 +53,7 @@ MonoBehaviour:
     randomSpawnPoint: 1
     specificSpawnPointIds:
     - T1
-    spawnAreaObject: {fileID: 1094403476913546812, guid: 95a5bc4ef0418c94286b4bc7f260b43a,
+    spawnAreaObject: {fileID: 1870581347953606337, guid: 1316db85fc173464b9e6bd7d53fc1c19,
       type: 3}
   - enemyPrefab: {fileID: 230522967583534294, guid: b308eb1cc3662b84bbde48a8e3a7e144,
       type: 3}
